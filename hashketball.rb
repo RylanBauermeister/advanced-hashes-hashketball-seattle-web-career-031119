@@ -163,17 +163,51 @@ def player_stats(name)
 end
 
 def big_shoe_rebounds
-  biggest = {
-    shoe: 0
-  }
+  player_with_most(:shoe)[:rebounds]
+end
+
+def player_with_most(attribute)
+  biggest = {}
+  biggest[attribute] = 0
   game_hash.each do |team, data|
     data[:players].each do |player, info|
-      if info[:shoe] > biggest[:shoe]
+      if info[attribute] > biggest[attribute]
         biggest = info
+        biggest[:name] = player
       end
     end
   end
-  biggest[:rebounds]
+  biggest
 end
 
+def winning_team
+  awayTotal = 0
+  homeTotal = 0
+  
+  game_hash[:home][:players].each do |player, info|
+    homeTotal += info[:points].to_i
+  end
+  game_hash[:away][:players].each do |player, info|
+    awayTotal += info[:points].to_i
+  end
+  
+  awayTotal > homeTotal ? game_hash[:away][:team_name] : 
+  game_hash[:home][:team_name]
+end
 
+def player_with_longest_name
+  longest = 0
+  longestName = ""
+  game_hash.each do |teamName, teamInfo|
+    teamInfo[:players].keys.map {|key| 
+      if key.length > longest
+        longestName = key
+      end
+    }
+  end
+  longestName
+end
+
+def long_name_steals_a_ton?
+  player_with_longest_name == player_with_most(:steals)[:name]
+end
