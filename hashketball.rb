@@ -180,6 +180,11 @@ def player_with_most(attribute)
   biggest
 end
 
+def most_points_scored
+  player_with_most(:points)[:name]
+end
+
+
 def winning_team
   awayTotal = 0
   homeTotal = 0
