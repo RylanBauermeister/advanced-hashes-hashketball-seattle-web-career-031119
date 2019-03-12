@@ -124,8 +124,6 @@ def get_player(name)
   else 
     return game_hash[:away][:players][name]
   end
-  
-  
 end
 
 def num_points_scored(name)
