@@ -119,27 +119,19 @@ def game_hash
 end
 
 def get_player(name)
-  if game_hash[:home][:players].include?(name)
-    return game_hash[:home][:players][name]
-  else 
-    return game_hash[:away][:players][name]
-  end
+  # if game_hash[:home][:players].include?(name)
+  #   return game_hash[:home][:players][name]
+  # else 
+  #   return game_hash[:away][:players][name]
+  # end
 end
 
 def num_points_scored(name)
-  if game_hash[:home][:players].include?(name)
-    return game_hash[:home][:players][name][:points]
-  else 
-    return game_hash[:away][:players][name][:points]
-  end
+  get_player(name)[:points]
 end
 
 def shoe_size(name)
-  if game_hash[:home][:players].include?(name)
-    return game_hash[:home][:players][name][:shoe]
-  else 
-    return game_hash[:away][:players][name][:shoe]
-  end
+  get_player[]
 end  
 
 def team_colors(team)
