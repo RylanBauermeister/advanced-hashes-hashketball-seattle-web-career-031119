@@ -154,11 +154,7 @@ def player_numbers(targetTeam)
 end
 
 def player_stats(name)
-  game_hash[:home][:players].include?(name) ? game_hash[:home][:players][name]
-  else 
-    return game_hash[:away][:players][name]
-  end
-  
+  game_hash[:home][:players].include?(name) ? game_hash[:home][:players][name] : game_hash[:away][:players][name]
 end
 
 def big_shoe_rebounds
